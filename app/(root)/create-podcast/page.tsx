@@ -31,13 +31,14 @@ import GenerateThumbnail from "@/components/GenerateThumbnail";
 import { Loader } from "lucide-react";
 import { Id } from "@/convex/_generated/dataModel";
 
+const voiceCategories = ["alloy", "shimmer", "nova", "echo", "fable", "onyx"];
+
 const formSchema = z.object({
   podcastTitle: z.string().min(2),
   podcastDescription: z.string().min(2),
 });
 
 const CreatePodcast = () => {
-  const voiceCategories = ["alloy", "shimmer", "nova", "echo", "fable", "onyx"];
   const [imagePrompt, setImagePrompt] = useState("");
   const [imageStorageId, setImageStorageId] = useState<Id<"_storage"> | null>(
     null
@@ -84,13 +85,13 @@ const CreatePodcast = () => {
               render={({ field }) => (
                 <FormItem className="flex flex-col gap-2.5">
                   <FormLabel className="text-16 font-bold text-white-1">
-                    Username
+                    Title
                   </FormLabel>
                   <FormControl>
                     <Input
                       placeholder="BharatPod Pro Podcast"
                       {...field}
-                      className="input-class focus-visible:ring-orange-1"
+                      className="input-class focus-visible:ring-offset-orange-1"
                     />
                   </FormControl>
                   <FormMessage className="text-white-1" />
@@ -104,7 +105,7 @@ const CreatePodcast = () => {
               <Select onValueChange={(value) => setVoiceType(value)}>
                 <SelectTrigger
                   className={cn(
-                    "text-16 w-full border-none bg-black-1 text-gray-1"
+                    "text-16 w-full border-none bg-black-1 text-gray-1 focus-visible:ring-offset-orange-1"
                   )}
                 >
                   <SelectValue
@@ -144,7 +145,7 @@ const CreatePodcast = () => {
                     <Textarea
                       placeholder="Write a short podcast description"
                       {...field}
-                      className="input-class focus-visible:ring-orange-1"
+                      className="input-class focus-visible:ring-offset-orange-1"
                     />
                   </FormControl>
                   <FormMessage className="text-white-1" />
@@ -153,17 +154,21 @@ const CreatePodcast = () => {
             />
           </div>
           <div className="flex flex-col pt-10">
-            <GeneratePodcast 
-            setAudioStorageId={setAudioStorageId}
-            setAudio={setAudioUrl}
-            voiceType={voiceType}
-            audio={audioUrl}
-            voicePrompt={voicePrompt}
-            setVoicePrompt={setVoicePrompt}
-            setAudioDuration={setAudioDuration}
+            <GeneratePodcast
+              setAudioStorageId={setAudioStorageId}
+              setAudio={setAudioUrl}
+              voiceType={voiceType!}
+              audio={audioUrl}
+              voicePrompt={voicePrompt}
+              setVoicePrompt={setVoicePrompt}
+              setAudioDuration={setAudioDuration}
             />
             <GenerateThumbnail 
-            
+            setImage={setImageUrl}
+            setImageStorageId={setImageStorageId}
+            image={imageUrl}
+            imagePrompt={imagePrompt}
+            setImagePrompt={setImagePrompt}
             />
             <div className="mt-10 w-full">
               <Button
