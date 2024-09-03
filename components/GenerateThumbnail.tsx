@@ -23,7 +23,6 @@ const GenerateThumbnail = ({
   const imageRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
   const [isAiThumbnail, setIsAiThumbnail] = useState(false);
-  const [isGenerating, setIsGenerating] = useState(false);
   const [isImageLoading, setIsImageLoading] = useState(false);
   const generateUploadUrl = useMutation(api.files.generateUploadUrl);
   const { startUpload } = useUploadFiles(generateUploadUrl);
