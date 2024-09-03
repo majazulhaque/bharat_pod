@@ -16,6 +16,14 @@ const PodcastPlayer = () => {
   const [currentTime, setCurrentTime] = useState(0);
   const { audio } = useAudio();
 
+  const handleProgressChange = (newValue: number) => {
+    const newTime = (newValue / 100) * duration;
+    setCurrentTime(newTime);
+    if (audioRef.current) {
+      audioRef.current.currentTime = newTime;
+    }
+  };
+
   const togglePlayPause = () => {
     if (audioRef.current?.paused) {
       audioRef.current?.play();
@@ -103,6 +111,7 @@ const PodcastPlayer = () => {
         value={(currentTime / duration) * 100}
         className="w-full"
         max={duration}
+        onChange={handleProgressChange}
       />
       <section className="glassmorphism-black flex h-[112px] w-full items-center justify-between px-4 max-md:justify-center max-md:gap-5 md:px-12">
         <audio
@@ -159,8 +168,8 @@ const PodcastPlayer = () => {
           </div>
         </div>
         <div className="flex items-center gap-6">
-          <h2 className="text-16 font-normal text-white-2 max-md:hidden">
-            {formatTime(duration)}
+          <h2 className="text-16 whitespace-nowrap font-normal text-white-2 max-md:hidden">
+          {formatTime(currentTime)} / {formatTime(duration)}
           </h2>
           <div className="flex w-full gap-2">
             <Image
