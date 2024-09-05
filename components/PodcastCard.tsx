@@ -1,4 +1,7 @@
+import { api } from '@/convex/_generated/api'
+import { updatePodcastViews } from '@/convex/podcasts'
 import { PodcastCardProps } from '@/types'
+import { useMutation } from 'convex/react'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import React from 'react'
@@ -7,8 +10,10 @@ const PodcastCard = ({
     imgUrl, title, description, podcastId
 }: PodcastCardProps) => {
     const router = useRouter();
-    const handleViews = () =>{
+    const incrementViews = useMutation(api.podcasts.updatePodcastViews);
+    const handleViews = async() =>{
         // increase views
+        await incrementViews({ podcastId });
         router.push(`/podcasts/${podcastId}`,{
             scroll:true
         })
