@@ -127,6 +127,7 @@ export interface PodcastCardRowProps {
   index:number;
   views:number;
   audioDuration:number;
+  audioUrl:string;
 }
 
 export interface CarouselProps {

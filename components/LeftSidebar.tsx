@@ -12,7 +12,6 @@ const LeftSidebar = () => {
   const pathname = usePathname();
   const router = useRouter();
   const { user } = useUser();
-  const userId = user?.id;
 
   const { signOut } = useClerk();
   return (
@@ -33,7 +32,7 @@ const LeftSidebar = () => {
             pathname === route || pathname.startsWith(`${route}/`);
           return (
             <Link
-              href={route}
+              href={route === "/profile" ? `/profile/${user?.id}` : route}
               key={label}
               className={cn(
                 "flex gap-3 items-center py-4 max-lg:px-4 justify-center lg:justify-start",

@@ -22,7 +22,7 @@ const Progress = React.forwardRef<
   return (
     <ProgressPrimitive.Root
       ref={ref}
-      className={cn("relative h-2 w-full overflow-hidden bg-black-5", className)}
+      className={cn("relative h-2 w-full overflow-hidden bg-black-5 cursor-pointer", className)}
       onClick={handleClick}
       {...props}
     >

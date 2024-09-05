@@ -90,6 +90,7 @@ const PodcastPlayer = () => {
       setIsPlaying(true);
     }
   }, [audio]);
+  
   const handleLoadedMetadata = () => {
     if (audioRef.current) {
       setDuration(audioRef.current.duration);

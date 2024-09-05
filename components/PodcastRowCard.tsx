@@ -1,6 +1,7 @@
 
 import { api } from "@/convex/_generated/api";
 import { formatDuration } from "@/lib/formatDuration";
+import { useAudio } from "@/providers/AudioProvider";
 import { PodcastCardRowProps } from "@/types";
 import { useMutation, useQuery } from "convex/react";
 import Image from "next/image";
@@ -13,9 +14,11 @@ const PodcastRowCard = ({
   views,
   podcastId,
   index,
-  audioDuration
+  audioDuration,
+  audioUrl,
 }: PodcastCardRowProps) => {
   const router = useRouter();
+  const {audio} = useAudio();
   const incrementViews = useMutation(api.podcasts.updatePodcastViews);
   const handleViews = async() => {
     await incrementViews({ podcastId });
@@ -26,7 +29,11 @@ const PodcastRowCard = ({
 
   return (
     <div className="flex w-full items-center justify-between cursor-pointer" onClick={handleViews}>
-      <span className="text-16 text-white-1 mr-5">{index + 1}</span>
+      <span className="text-16 text-white-1 mr-5 w-[20px] flex items-center justify-center">{audio?.audioUrl === audioUrl ? (
+        <Image src="/icons/Play.svg" alt="play icon" width={22} height={22}/>
+      ):(
+        index + 1
+      )}</span>
       <div className="flex w-full items-center justify-between border-b-[1px] border-gray-700 py-4">
         <div className="flex items-center">
           <Image
@@ -47,7 +54,7 @@ const PodcastRowCard = ({
               height={22}
               className="mr-2"
             />
-            {views}
+            {views.toLocaleString()}
           </span>
           <span className="hidden md:flex items-center w-[100px] text-14 text-white-1 font-semibold">
             <Image

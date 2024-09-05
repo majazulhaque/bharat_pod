@@ -36,7 +36,7 @@ const PodcastDetails = ({
             width={24}
             height={24}
           />
-          <h2 className="text-16 font-bold text-white-1">{podcast?.views}</h2>
+          <h2 className="text-16 font-bold text-white-1">{podcast?.views?.toLocaleString()}</h2>
         </figure>
       </header>
       <PodcastDetailPlayer  isOwner={isOwner} podcastId={podcast?._id} {...podcast}/>
