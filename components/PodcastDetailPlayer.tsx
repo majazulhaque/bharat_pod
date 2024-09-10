@@ -139,8 +139,8 @@ const PodcastDetailPlayer = ({
           className="aspect-square rounded-lg"
         />
         <div className="flex w-full flex-col gap-5 max-md:items-center md:gap-9">
-          <article className="flex flex-col gap-2 max-md:items-center">
-            <h1 className="text-32 font-extrabold tracking-[-0.32px] text-white-1">
+          <article className="flex flex-col justify-start gap-2 max-md:items-center min-h-[120px]">
+            <h1 className="text-[25px] w-[500px] font-extrabold tracking-[-0.32px] text-white-1">
               {podcastTitle}
             </h1>
             <figure
@@ -161,7 +161,7 @@ const PodcastDetailPlayer = ({
           </article>
 
           {playAudio ? (
-            <canvas ref={canvasRef}className="absolute bottom-10 w-[300px] h-[50px]" />
+            <canvas ref={canvasRef}className="absolute bottom-5 w-[300px] h-[50px]" />
           ) : (
             <Button
               onClick={handlePlay}
