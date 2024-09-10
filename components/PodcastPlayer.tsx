@@ -16,7 +16,7 @@ const PodcastPlayer = () => {
   const [currentTime, setCurrentTime] = useState(0);
   const { audio } = useAudio();
 
-  const handleProgressChange = (newValue: number) => {
+  const handleProgressChange = (newValue: any) => {
     const newTime = (newValue / 100) * duration;
     setCurrentTime(newTime);
     if (audioRef.current) {

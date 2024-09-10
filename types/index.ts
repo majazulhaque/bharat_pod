@@ -46,7 +46,7 @@ export interface PodcastProps {
 }
 
 export interface ProfilePodcastProps {
-  podcasts: PodcastProps[];
+  podcasts: PodcastProps[] | any;
   listeners: number;
 }
 
@@ -93,7 +93,7 @@ export interface PodcastDetailPlayerProps {
   author: string;
   isOwner: boolean;
   imageUrl: string;
-  podcastId: Id<"podcasts"> ;
+  podcastId: Id<"podcasts">;
   imageStorageId: Id<"_storage">;
   audioStorageId: Id<"_storage">;
   authorImageUrl: string;
@@ -124,10 +124,11 @@ export interface PodcastCardRowProps {
   imgUrl: string;
   title: string;
   podcastId: Id<"podcasts">;
-  key:number;
-  views:number;
-  audioDuration:number;
-  audioUrl:string;
+  key: number;
+  index: number;
+  views: number;
+  audioDuration: number;
+  audioUrl: string;
 }
 
 export interface CarouselProps {

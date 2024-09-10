@@ -14,6 +14,7 @@ const PodcastRowCard = ({
   views,
   podcastId,
   key,
+  index,
   audioDuration,
   audioUrl,
 }: PodcastCardRowProps) => {
@@ -32,7 +33,7 @@ const PodcastRowCard = ({
       <span className="text-16 text-white-1 mr-5 w-[20px] flex items-center justify-center">{audio?.audioUrl === audioUrl ? (
         <Image src="/icons/Play.svg" alt="play icon" width={22} height={22}/>
       ):(
-        key + 1
+        index + 1
       )}</span>
       <div className="flex w-full items-center justify-between border-b-[1px] border-gray-700 py-4">
         <div className="flex items-center">
