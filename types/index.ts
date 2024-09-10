@@ -124,7 +124,7 @@ export interface PodcastCardRowProps {
   imgUrl: string;
   title: string;
   podcastId: Id<"podcasts">;
-  index:number;
+  key:number;
   views:number;
   audioDuration:number;
   audioUrl:string;

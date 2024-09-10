@@ -42,7 +42,7 @@ const Home = () => {
             ?.slice(0, 4)
             ?.map(({ _id, podcastTitle, imageUrl, views,audioDuration,audioUrl }, index) => (
               <PodcastRowCard
-                index={index}
+                key={index}
                 imgUrl={imageUrl!}
                 title={podcastTitle}
                 views={views!}
